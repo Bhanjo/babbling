@@ -1,9 +1,9 @@
 import { fetchSpeechList } from '@/api';
 import Title from '@/component/atom/Title';
-import { SpeechItem, SpeechList } from '@/type';
+import { SpeechItem } from '@/type';
 
 const SpeechList = async () => {
-  const data = (await fetchSpeechList()) as SpeechList;
+  const data = await fetchSpeechList();
   return (
     <>
       {data.speechList.map((item: SpeechItem) => (
