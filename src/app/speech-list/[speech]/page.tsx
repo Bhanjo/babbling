@@ -1,33 +1,33 @@
 'use client';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from 'react-speech-recognition';
 
 const Speech = () => {
-  const [value, setValue] = useState('');
-  const [isRecording, setIsRecording] = useState(false);
+  const { transcript, listening } = useSpeechRecognition();
 
-  const { listening, transcript } = useSpeechRecognition();
+  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    return <div>음성 인식이 지원되지 않는 브라우저입니다.</div>;
+  }
 
-  const handleRecord = () => {
-    if (isRecording) {
-      SpeechRecognition.stopListening();
-    } else {
-      SpeechRecognition.startListening();
-    }
-    setIsRecording(listening);
-  };
-
-  const handleTranscript = () => {
-    setValue(transcript);
-  };
+  const handleRecord = () => {};
 
   return (
     <div>
-      <div onChange={handleTranscript}>{value}</div>
-      <button onClick={handleRecord}>음성인식</button>
-      <div>{isRecording ? '녹음중' : '정지됨'}</div>
+      <div>음성 인식 결과: {transcript}</div>
+      <button
+        onClick={() => SpeechRecognition.startListening({ continuous: true })}
+        // disabled={listening}
+      >
+        음성 인식 시작
+      </button>
+      <button
+        onClick={() => SpeechRecognition.stopListening()}
+        // disabled={!listening}
+      >
+        음성 인식 정지
+      </button>
     </div>
   );
 };

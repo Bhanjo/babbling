@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import React from 'react';
 
 interface Props {
   text: string;

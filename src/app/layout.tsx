@@ -1,8 +1,7 @@
+import React from 'react';
 import Navigation from '@/component/organism/Navigation';
 import './globals.css';
-// import { Inter } from 'next/font/google';
-
-// const inter = Inter({ subsets: ['latin'] });
+import 'regenerator-runtime';
 
 export const metadata = {
   title: 'Create Next App',

@@ -1,3 +1,4 @@
+import React from 'react';
 import { fetchSpeechList } from '@/api';
 import Title from '@/component/atom/Title';
 import { SpeechItem } from '@/type';

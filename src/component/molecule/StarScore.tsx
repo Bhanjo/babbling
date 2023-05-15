@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { StarBlank, StarFilled, StarHalf } from '../atom';
 
 interface Props {

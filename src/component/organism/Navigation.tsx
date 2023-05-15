@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavButton } from '../atom';
 import { StarScore } from '../molecule';
 
