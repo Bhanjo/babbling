@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link';
 
 interface Props {
@@ -5,8 +6,6 @@ interface Props {
   href: string;
 }
 
-const NavButton = ({ text, href }: Props) => {
+export const NavButton = ({ text, href }: Props) => {
   return <Link href={href}>{text}</Link>;
 };
-
-export default NavButton;
