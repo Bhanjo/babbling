@@ -1,20 +1,29 @@
 'use client';
-import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
+import React, { useEffect, useState } from 'react';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from 'react-speech-recognition';
 
 const Speech = () => {
   const { transcript, listening } = useSpeechRecognition();
+  const [
+    isBrowserSupportSpeechRecognition,
+    setIsBrowserSupportSpeechRecognition,
+  ] = useState(false);
 
-  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-    return <div>음성 인식이 지원되지 않는 브라우저입니다.</div>;
+  useEffect(() => {
+    if (SpeechRecognition.browserSupportsSpeechRecognition()) {
+      setIsBrowserSupportSpeechRecognition(true);
+    }
+  }, []);
+
+  if (!isBrowserSupportSpeechRecognition) {
+    return null;
   }
 
-  const handleRecord = () => {};
-
   return (
-    <div>
+    <>
       <div>음성 인식 결과: {transcript}</div>
       <button
         onClick={() => SpeechRecognition.startListening({ continuous: true })}
@@ -28,7 +37,7 @@ const Speech = () => {
       >
         음성 인식 정지
       </button>
-    </div>
+    </>
   );
 };
 
