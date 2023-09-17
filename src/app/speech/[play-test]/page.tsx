@@ -1,9 +1,16 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useBrowserSupportSpeechRecognition } from './hooks';
+import { getSpeechSentenceAction } from '@/util/action';
 
 const Speech = () => {
+  const route = useRouter();
+  const path = usePathname();
+  const backSpeechList = () => {
+    route.push(`/${path.split('/')[1]}`);
+  };
+
   const {
     transcript,
     listening,
@@ -11,11 +18,16 @@ const Speech = () => {
     SpeechRecognition,
   } = useBrowserSupportSpeechRecognition();
 
-  const route = useRouter();
-  const path = usePathname();
-  const backSpeechList = () => {
-    route.push(`/${path.split('/')[1]}`);
-  };
+  const [compareSentence, setCompareSentence] = useState<string>();
+
+  useEffect(() => {
+    const getData = async () => {
+      const speechId = +path.split('/')[2];
+      const data = await getSpeechSentenceAction(speechId);
+      setCompareSentence(data?.sentence);
+    };
+    getData();
+  }, [path]);
 
   if (!isBrowserSupportSpeechRecognition) {
     return null;
@@ -39,6 +51,7 @@ const Speech = () => {
       >
         음성 인식 정지
       </button>
+      <p>{compareSentence}</p>
     </>
   );
 };
