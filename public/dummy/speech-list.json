@@ -2,27 +2,18 @@
   "speechList": [
     {
       "id": 0,
-      "speechId": 1,
-      "title": "간장공장공장장",
-      "difficulty": 1,
-      "isComplete": true,
-      "score": 10
+      "speechId": 0,
+      "title": "간장공장공장장"
     },
     {
       "id": 1,
-      "speechId": 5,
-      "title": "촉촉한 초코칩들의 이야기",
-      "difficulty": 3,
-      "isComplete": false,
-      "score": null
+      "speechId": 1,
+      "title": "촉촉한 초코칩들의 이야기"
     },
     {
       "id": 2,
-      "speechId": 15,
-      "title": "김서방네 콩깍지",
-      "difficulty": 2,
-      "isComplete": true,
-      "score": 5
+      "speechId": 2,
+      "title": "김서방네 콩깍지"
     }
   ]
 }
