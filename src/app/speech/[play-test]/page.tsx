@@ -1,22 +1,21 @@
 'use client';
-import dynamic from 'next/dynamic';
-import React, { useEffect, useState } from 'react';
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from 'react-speech-recognition';
+import React from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useBrowserSupportSpeechRecognition } from './hooks';
 
 const Speech = () => {
-  const { transcript, listening } = useSpeechRecognition();
-  const [
+  const {
+    transcript,
+    listening,
     isBrowserSupportSpeechRecognition,
-    setIsBrowserSupportSpeechRecognition,
-  ] = useState(false);
+    SpeechRecognition,
+  } = useBrowserSupportSpeechRecognition();
 
-  useEffect(() => {
-    if (SpeechRecognition.browserSupportsSpeechRecognition()) {
-      setIsBrowserSupportSpeechRecognition(true);
-    }
-  }, []);
+  const route = useRouter();
+  const path = usePathname();
+  const backSpeechList = () => {
+    route.push(`/${path.split('/')[1]}`);
+  };
 
   if (!isBrowserSupportSpeechRecognition) {
     return null;
@@ -24,6 +23,9 @@ const Speech = () => {
 
   return (
     <>
+      <button onClick={backSpeechList} className='bg-sky-400 text-white'>
+        목록으로 돌아가기
+      </button>
       <div>음성 인식 결과: {transcript}</div>
       <button
         onClick={() => SpeechRecognition.startListening({ continuous: true })}
