@@ -8,7 +8,9 @@ const SpeechList = async () => {
   return (
     <>
       {data.speechList.map((item: SpeechItem) => (
-        <Title key={item.id} text={item.title} />
+        <div key={item.id}>
+          <Title key={item.id} text={item.title} />
+        </div>
       ))}
     </>
   );

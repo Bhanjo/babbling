@@ -1,14 +1,12 @@
 import React from 'react';
 import { NavButton } from '../atom';
-import { StarScore } from '../molecule';
 
 const Navigation = () => {
   return (
-    <>
-      <NavButton href='/' text={'Home'} />
-      <NavButton href='/speech-list' text={'Start'} />
-      <StarScore score={3} />
-    </>
+    <div className='flex gap-2'>
+      <NavButton href='/' text={'메인으로'} />
+      <NavButton href='/speech-list' text={'문장 선택하기'} />
+    </div>
   );
 };
 

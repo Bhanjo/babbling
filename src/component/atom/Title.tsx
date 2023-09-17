@@ -5,7 +5,11 @@ interface Props {
   style?: string;
 }
 const Title = ({ text, style }: Props) => {
-  return <h1 className='text-lg'>{text}</h1>;
+  return (
+    <button className='text-lg hover:bg-sky-600 hover:text-white'>
+      {text}
+    </button>
+  );
 };
 
 export default Title;
