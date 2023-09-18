@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { useBrowserSupportSpeechRecognition } from './hooks';
+import { useBrowserSupportSpeechRecognition, useCompareSpeech } from './hooks';
 import { getSpeechSentenceAction } from '@/util/action';
 
 const Speech = () => {
@@ -18,16 +18,7 @@ const Speech = () => {
     SpeechRecognition,
   } = useBrowserSupportSpeechRecognition();
 
-  const [compareSentence, setCompareSentence] = useState<string>();
-
-  useEffect(() => {
-    const getData = async () => {
-      const speechId = +path.split('/')[2];
-      const data = await getSpeechSentenceAction(speechId);
-      setCompareSentence(data?.sentence);
-    };
-    getData();
-  }, [path]);
+  const { compareSentence } = useCompareSpeech(transcript);
 
   if (!isBrowserSupportSpeechRecognition) {
     return null;
