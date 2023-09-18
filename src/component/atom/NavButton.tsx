@@ -7,5 +7,9 @@ interface Props {
 }
 
 export const NavButton = ({ text, href }: Props) => {
-  return <Link href={href}>{text}</Link>;
+  return (
+    <Link href={href}>
+      <span className='bg-sky-500 text-white'>{text}</span>
+    </Link>
+  );
 };
