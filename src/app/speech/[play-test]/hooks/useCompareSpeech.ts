@@ -1,4 +1,6 @@
 import { getSpeechSentenceAction } from '@/util/action';
+import { stringMatchChecker } from '@/util/func';
+import { removeBlankAndSpecialCharacters } from '@/util/regex';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -13,7 +15,10 @@ export const useCompareSpeech = (script: string) => {
 
   const compare = useMemo(() => {
     // script와 compareSentence에서 특수기호 및 공백 제거
-    console.log(script, replacedSentence);
+    stringMatchChecker(
+      removeBlankAndSpecialCharacters(script),
+      replacedSentence
+    );
     return replacedSentence;
   }, [script, replacedSentence]);
 
@@ -29,8 +34,4 @@ export const useCompareSpeech = (script: string) => {
   }, [path]);
 
   return { compareSentence };
-};
-
-const removeBlankAndSpecialCharacters = (str: string) => {
-  return str.replace(/[^a-zA-Z가-힣]/g, '');
 };
